@@ -8,21 +8,21 @@ module Pair
     , triple
     , ntuple
     , fold
-    
+
     -- * Coordinate
     , Coord (..)
     , safe
-    
+
     -- * Zipper
-    
+
     -- * Structural Operations
     , proj
     , inj
-    
+
     -- * Compositional Operations
     , prod
     , join
-    
+
   ) where
 
 import Control.Monad hiding (join)
@@ -32,9 +32,9 @@ import Control.Monad hiding (join)
 
 -- | Data type for a nested pair.
 --
-data Pair a = Nil                     -- empty
-             | Atom a                 -- atom
-             | Pair (Pair a) (Pair a) -- pair
+data Pair a = Nil                    -- empty
+            | Atom a                 -- atom
+            | Pair (Pair a) (Pair a) -- pair
   deriving Eq
 
 -- | Smart constructor for pair.
