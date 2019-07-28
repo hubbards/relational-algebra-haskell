@@ -176,7 +176,7 @@ trans ci cj = map (T.trans ci cj)
 --
 --   More complex examples of product:
 --
---   TODO: doctests
+--   TODO: add doctests
 --
 prod :: T.Coord -> T.Coord -> Op2 a
 prod cl cr l r = map (T.prod cl cr) l <*> r
@@ -185,7 +185,7 @@ prod cl cr l r = map (T.prod cl cr) l <*> r
 --
 --   Simple examples of join:
 --
---   TODO: doctests
+--   TODO: add doctests
 --
 --   More complex examples of join:
 --

@@ -31,7 +31,7 @@ module Tuple (
   , join
   ) where
 
-import Control.Monad hiding (join)
+import Control.Monad hiding ( join )
 
 import Text.PrettyPrint
 
@@ -93,8 +93,8 @@ instance Show a => Show (Tuple a) where
   show (Tuple [])       = "Nil"
   show (Tuple (t : ts)) = "(" ++ show t ++ helper ts ++ ")"
     where
-      helper []       = ""
-      helper (t : ts) = ", " ++ show t ++ helper ts
+      helper []         = ""
+      helper (t' : ts') = ", " ++ show t' ++ helper ts'
 
 -- | Pretty print function.
 --
@@ -103,8 +103,8 @@ pretty (Atom x)         = text (show x)
 pretty (Tuple [])       = text "Nil"
 pretty (Tuple (t : ts)) = parens (pretty t <> helper ts)
   where
-    helper []       = empty
-    helper (t : ts) = comma <+> pretty t <> helper ts
+    helper []         = empty
+    helper (t' : ts') = comma <+> pretty t' <> helper ts'
 
 -- | Monad instance for tuple.
 --
@@ -229,8 +229,8 @@ down i (Tuple ts, c) = (head rs, In ls c $ tail rs)
 coord :: Coord -> Zipper a -> Zipper a
 coord c z = if safe c (fst z) then helper c z else unsafe c
   where
-    helper [] z                      = z
-    helper (c : cs) z @ (Tuple _, _) = helper cs (down c z)
+    helper [] z'                       = z'
+    helper (c' : cs) z' @ (Tuple _, _) = helper cs (down c' z')
 
 -- run tuple function at coordinate
 run1 :: Op1 a -> Coord -> Op1 a

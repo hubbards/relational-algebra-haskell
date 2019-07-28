@@ -79,9 +79,9 @@ instance Show a => Show (Pair a) where
   show (Atom x)   = show x
   show (Pair l r) = "( " ++ show l ++ helper r ++ " )"
     where
-      helper Nil        = ""
-      helper (Atom x)   = " , " ++ show x
-      helper (Pair l r) = " , " ++ show l ++ helper r
+      helper Nil          = ""
+      helper (Atom x)     = " , " ++ show x
+      helper (Pair l' r') = " , " ++ show l' ++ helper r'
 
 -- | Monad instance for pair.
 --
