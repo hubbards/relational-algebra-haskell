@@ -19,4 +19,9 @@ Build the project with the command `stack build`.
 
 Test the project with the command `stack test`.
 
+### GHCi
+
+Run GHCi with the command `stack ghci`. In GHCi, load the `Example` module with
+the `:m Example` option.
+
 [stack]: https://www.haskellstack.org
