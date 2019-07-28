@@ -1,12 +1,13 @@
-name:                RelationalAlgebra
+name:                relational-algebra-haskell
 version:             0.1.0.0
-github:              "hubbards/relational-algebra"
+github:              "hubbards/relational-algebra-haskell"
 license:             MIT
 author:              "Spencer Hubbard"
 copyright:           "2018 Spencer Hubbard"
 
 extra-source-files:
 - README.md
+- ChangeLog.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -15,12 +16,23 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on Github at <https://github.com/hubbards/relational-algebra>
+description:         Please see the README on Github at <https://github.com/hubbards/relational-algebra-haskell>
 
 dependencies:
 - base >= 4.7 && < 5
 - pretty
-- doctest
 
 library:
   source-dirs: src
+
+tests:
+  relational-algebra-haskell-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - relational-algebra-haskell
+    - doctest >= 0.8

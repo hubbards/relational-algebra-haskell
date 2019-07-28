@@ -1,0 +1,56 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5970e8c3589c9240aa285675a1970fa51f22ffa4ce0b1fe53479cab351d8e8ae
+
+name:           relational-algebra-haskell
+version:        0.1.0.0
+description:    Please see the README on Github at <https://github.com/hubbards/relational-algebra-haskell>
+homepage:       https://github.com/hubbards/relational-algebra-haskell#readme
+bug-reports:    https://github.com/hubbards/relational-algebra-haskell/issues
+author:         Spencer Hubbard
+maintainer:     Spencer Hubbard
+copyright:      2018 Spencer Hubbard
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/hubbards/relational-algebra-haskell
+
+library
+  exposed-modules:
+      Example
+      Pair
+      Relation
+      Tuple
+  other-modules:
+      Paths_relational_algebra_haskell
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , pretty
+  default-language: Haskell2010
+
+test-suite relational-algebra-haskell-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_relational_algebra_haskell
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , doctest >=0.8
+    , pretty
+    , relational-algebra-haskell
+  default-language: Haskell2010

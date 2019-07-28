@@ -17,6 +17,6 @@ Build the project with the command `stack build`.
 
 ### Test
 
-Test the `Pair` module with the command `stack exec doctest -- src/Pair.hs`.
+Test the project with the command `stack test`.
 
 [stack]: https://www.haskellstack.org
