@@ -1,38 +1,41 @@
-name:                relational-algebra-haskell
-version:             0.1.0.0
-github:              "hubbards/relational-algebra-haskell"
-license:             MIT
-author:              "Spencer Hubbard"
-copyright:           "2018 Spencer Hubbard"
+name: relational-algebra-haskell
+version: 0.1.0.0
+github: "hubbards/relational-algebra-haskell"
+license: MIT
+author: "Spencer Hubbard"
+copyright: "2018 Spencer Hubbard"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
+- CHANGELOG.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+# synopsis: Short description of your package
+# category: Web
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on Github at <https://github.com/hubbards/relational-algebra-haskell>
+description: Please see the README on Github at <https://github.com/hubbards/relational-algebra-haskell>
 
 dependencies:
 - base >= 4.7 && < 5
 - pretty
 
+ghc-options: -Wall
+
 library:
   source-dirs: src
+  exposed-modules:
+  - Example
+  - Pair
+  - Relation
+  - Tuple
 
 tests:
-  relational-algebra-haskell-test:
-    main:                Spec.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+  tests:
+    main: Main.hs
+    source-dirs: test
     dependencies:
     - relational-algebra-haskell
     - doctest >= 0.8
