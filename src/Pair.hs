@@ -1,31 +1,25 @@
 -- | This module contains data types and operations for a nested pair algebra.
 --
-module Pair
-  (
-    -- * Pair
-      Pair (..)
-    , pair
-    , triple
-    , ntuple
-    , fold
-
-    -- * Coordinate
-    , Coord (..)
-    , safe
-
-    -- * Zipper
-
-    -- * Structural Operations
-    , proj
-    , inj
-
-    -- * Compositional Operations
-    , prod
-    , join
-
+module Pair (
+  -- * Pair
+    Pair (..)
+  , pair
+  , triple
+  , ntuple
+  , fold
+  -- * Coordinate
+  , Coord (..)
+  , safe
+  -- * Zipper
+  -- * Structural Operations
+  , proj
+  , inj
+  -- * Compositional Operations
+  , prod
+  , join
   ) where
 
-import Control.Monad hiding (join)
+import Control.Monad hiding ( join )
 
 -- -----------------------------------------------------------------------------
 -- Pair
@@ -83,10 +77,11 @@ instance Show a => Show (Pair a) where
   -- Show method.
   show Nil        = "Nil"
   show (Atom x)   = show x
-  show (Pair l r) = "( " ++ show l ++ helper r ++ " )" where
-    helper Nil        = ""
-    helper (Atom x)   = " , " ++ show x
-    helper (Pair l r) = " , " ++ show l ++ helper r
+  show (Pair l r) = "( " ++ show l ++ helper r ++ " )"
+    where
+      helper Nil        = ""
+      helper (Atom x)   = " , " ++ show x
+      helper (Pair l r) = " , " ++ show l ++ helper r
 
 -- | Monad instance for pair.
 --

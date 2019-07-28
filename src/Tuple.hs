@@ -1,39 +1,34 @@
 -- | This module contains data types and operations for a nested tuple algebra.
 --
-module Tuple
-  (
-    -- * Tuple
-      Tuple (..)
-    , nil
-    , nils
-    , pair
-    , triple
-    , ntuple
-    , pretty
-
-    -- * Coordinate
-    , Coord
-    , safe
-
-    -- * Zipper
-    , Context (..)
-    , Zipper
-    , (.>)
-    , run
-    , update
-    , enter
-    , exit
-    , up
-    , down
-    , coord
-
-    -- * Structural Operations
-    , proj
-    , inj
-    , trans
-    , prod
-    , join
-
+module Tuple (
+  -- * Tuple
+    Tuple (..)
+  , nil
+  , nils
+  , pair
+  , triple
+  , ntuple
+  , pretty
+  -- * Coordinate
+  , Coord
+  , safe
+  -- * Zipper
+  , Context (..)
+  , Zipper
+  , (.>)
+  , run
+  , update
+  , enter
+  , exit
+  , up
+  , down
+  , coord
+  -- * Structural Operations
+  , proj
+  , inj
+  , trans
+  , prod
+  , join
   ) where
 
 import Control.Monad hiding (join)
@@ -96,18 +91,20 @@ instance Show a => Show (Tuple a) where
   -- Show operation.
   show (Atom x)         = show x
   show (Tuple [])       = "Nil"
-  show (Tuple (t : ts)) = "(" ++ show t ++ helper ts ++ ")" where
-    helper []       = ""
-    helper (t : ts) = ", " ++ show t ++ helper ts
+  show (Tuple (t : ts)) = "(" ++ show t ++ helper ts ++ ")"
+    where
+      helper []       = ""
+      helper (t : ts) = ", " ++ show t ++ helper ts
 
 -- | Pretty print function.
 --
 pretty :: Show a => Tuple a -> Doc
 pretty (Atom x)         = text (show x)
 pretty (Tuple [])       = text "Nil"
-pretty (Tuple (t : ts)) = parens (pretty t <> helper ts) where
-  helper []       = empty
-  helper (t : ts) = comma <+> pretty t <> helper ts
+pretty (Tuple (t : ts)) = parens (pretty t <> helper ts)
+  where
+    helper []       = empty
+    helper (t : ts) = comma <+> pretty t <> helper ts
 
 -- | Monad instance for tuple.
 --
@@ -224,14 +221,16 @@ up (t, In ls c rs) = (Tuple $ ls ++ [t] ++ rs, c)
 
 -- | Focus in on coordinate (not total).
 down :: Int -> Zipper a -> Zipper a
-down i (Tuple ts, c) = (head rs, In ls c $ tail rs) where
-  (ls, rs) = splitAt i ts
+down i (Tuple ts, c) = (head rs, In ls c $ tail rs)
+  where
+    (ls, rs) = splitAt i ts
 
 -- | Focus in on coordinate (unsafe).
 coord :: Coord -> Zipper a -> Zipper a
-coord c z = if safe c (fst z) then helper c z else unsafe c where
-  helper [] z                      = z
-  helper (c : cs) z @ (Tuple _, _) = helper cs (down c z)
+coord c z = if safe c (fst z) then helper c z else unsafe c
+  where
+    helper [] z                      = z
+    helper (c : cs) z @ (Tuple _, _) = helper cs (down c z)
 
 -- run tuple function at coordinate
 run1 :: Op1 a -> Coord -> Op1 a
@@ -352,13 +351,14 @@ trans i j t = inj j (inj i t $ proj j t) (proj i t)
 --   TODO: add more doctests
 --
 prod :: Coord -> Coord -> Op2 a
-prod i j = run2 helper i j where
-  helper (Tuple []) r          = r
-  helper l (Tuple [])          = l
-  helper (Tuple ls) (Tuple rs) = Tuple $ ls ++ rs
-  helper (Tuple ls) r          = Tuple $ ls ++ [r]
-  helper l (Tuple rs)          = Tuple $ l : rs
-  helper l r                   = Tuple [l, r]
+prod i j = run2 helper i j
+  where
+    helper (Tuple []) r          = r
+    helper l (Tuple [])          = l
+    helper (Tuple ls) (Tuple rs) = Tuple $ ls ++ rs
+    helper (Tuple ls) r          = Tuple $ ls ++ [r]
+    helper l (Tuple rs)          = Tuple $ l : rs
+    helper l r                   = Tuple [l, r]
 
 -- | Join operation for tuples (unsafe).
 --
@@ -409,9 +409,8 @@ prod i j = run2 helper i j where
 --   (1, 6, 9, (2, 7, 8, 3, 4), 5)
 --
 join :: Eq a => Coord -> Coord -> Op2 a
-join i j = run2 helper i j where
-  helper l r
-    | l == r    = l
-    | otherwise = error "coordinates don't match"
+join i j = run2 helper i j
+  where
+    helper l r = if l == r then l else error "coordinates don't match"
 
 -- TODO: add join and product where interleaving is swapped on the left

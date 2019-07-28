@@ -5,25 +5,21 @@
 --   Note that attribute names are given by coordinates. Also, note that
 --   relation keys and schemas are omitted.
 --
-module Relation
-  (
-    -- * Relation
-      Relation
-    , pretty
-
-    -- * Set-Based Operations
-    , union
-    , diff
-    , inter
-    , select
-
-    -- * Structural Operations
-    , proj
-    , inj
-    , trans
-    , prod
-    , join
-
+module Relation (
+  -- * Relation
+    Relation
+  , pretty
+  -- * Set-Based Operations
+  , union
+  , diff
+  , inter
+  , select
+  -- * Structural Operations
+  , proj
+  , inj
+  , trans
+  , prod
+  , join
   ) where
 
 import qualified Data.List as L
