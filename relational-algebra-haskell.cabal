@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 96e29edc6ad197798942f9f7a1fc310a73d0266701c2b12075b597a1aab2613e
+-- hash: c5c49591b86b65812fac74a450e53323fffb0415822e9ea25fc9f2c829905f14
 
 name:           relational-algebra-haskell
 version:        0.1.0.0
@@ -52,6 +52,7 @@ test-suite tests
   build-depends:
       base >=4.7 && <5
     , doctest >=0.8
+    , filepath
     , pretty
     , relational-algebra-haskell
   default-language: Haskell2010

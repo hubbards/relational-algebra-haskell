@@ -38,4 +38,5 @@ tests:
     source-dirs: test
     dependencies:
     - relational-algebra-haskell
+    - filepath
     - doctest >= 0.8
