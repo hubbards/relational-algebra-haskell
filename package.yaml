@@ -7,7 +7,7 @@ copyright: "2018 Spencer Hubbard"
 
 extra-source-files:
 - README.md
-- CHANGELOG.md
+- ChangeLog.md
 
 # Metadata used when publishing your package
 # synopsis: Short description of your package
